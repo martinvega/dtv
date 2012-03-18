@@ -1,0 +1,24 @@
+<h4>Listado de Estados</h4>
+
+<table>
+  <tr>
+    <th>State</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @contact_states.each do |contact_state| %>
+  <tr class="<%= cycle(:even, :odd) %>">
+    <td><%= contact_state.state %></td>
+    <td><%= link_to 'Show', contact_state %></td>
+    <td><%= link_to 'Edit', edit_contact_state_path(contact_state) %></td>
+    <td class="delete"><%= button_to 'Destroy', contact_state, 
+      :confirm => '¿Estás seguro?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<div id="links">
+  <%= link_to 'New Contact state', new_contact_state_path, :class => :important_action %>
+</div>

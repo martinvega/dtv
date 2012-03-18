@@ -1,0 +1,31 @@
+<h4>Listado de Contactos</h4>
+
+<table>
+  <tr>
+    <th>Date</th>
+    <th>Name</th>
+    <th>Number</th>
+    <th>Locality</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @contacts.each do |contact| %>
+  <tr class="<%= cycle(:even, :odd) %>">
+    <td><%= contact.date %></td>
+    <td><%= contact.name %></td>
+    <td><%= contact.number %></td>
+    <td><%= contact.locality %></td>
+    <td><%= link_to 'Show', contact %></td>
+    <td><%= link_to 'Edit', edit_contact_path(contact) %></td>
+    <td class="delete"><%= button_to 'Destroy', contact, :confirm => '¿Estás seguro?',
+      :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<div id="links">
+  <%= link_to 'New Contact', new_contact_path, :class => :important_action %> | 
+  <%= link_to 'Importar Contactos CSV', import_csv_contacts_path, :class => :important_action %>
+</div>

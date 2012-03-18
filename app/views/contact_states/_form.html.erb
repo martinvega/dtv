@@ -1,0 +1,22 @@
+<%= form_for(@contact_state) do |f| %>
+  <% if @contact_state.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@contact_state.errors.count, "error") %> prohibited this contact_state from being saved:</h2>
+
+      <ul>
+      <% @contact_state.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :state %><br />
+    <%= f.text_field :state %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

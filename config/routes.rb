@@ -1,4 +1,29 @@
 Dtv::Application.routes.draw do
+  resources :contacts do
+    collection do
+      get :import_csv
+      post :import_csv_contacts
+    end
+  end
+
+  resources :campaigns
+
+  resources :users do
+    collection do
+      get :login
+      post :create_session
+    end
+
+    member do
+      get :logout
+      get :edit_password
+      put :update_password
+      
+    end
+  end
+
+  resources :contact_states
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -48,7 +73,7 @@ Dtv::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  root :to => 'users#login'
 
   # See how all your routes lay out with "rake routes"
 

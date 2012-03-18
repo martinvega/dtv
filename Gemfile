@@ -5,9 +5,12 @@ gem 'rails', '3.1.0'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
-
+gem 'will_paginate'
+gem 'pg'
 gem 'json'
+gem 'validates_timeliness'
+gem "dynamic_form", "~> 1.1.4"
+gem "jquery_datepicker", "~> 0.3.2"
 
 # Gems used only for assets and not required
 # in production environments by default.

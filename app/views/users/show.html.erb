@@ -1,0 +1,18 @@
+<p>
+  <b>Name:</b>
+  <%= @user.name %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @user.user %>
+</p>
+
+<p>
+  <b>Administrador:</b>
+  <%= @user.admin? ? "Si" : "No" %>
+</p>
+
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

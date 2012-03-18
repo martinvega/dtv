@@ -1,0 +1,13 @@
+<p>
+  <b>State:</b>
+  <%= @contact_state.state %>
+</p>
+
+<p>
+  <b>Comment:</b>
+  <%= @contact_state.comment %>
+</p>
+
+
+<%= link_to 'Edit', edit_contact_state_path(@contact_state) %> |
+<%= link_to 'Back', contact_states_path %>

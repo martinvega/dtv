@@ -1,0 +1,28 @@
+<h4>Listado de Campañas</h4>
+
+<table>
+  <tr>
+    <th>Month</th>
+    <th>Year</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @campaigns.each do |campaign| %>
+  <tr class="<%= cycle(:even, :odd) %>">
+    <td><%= campaign.month %></td>
+    <td><%= campaign.year %></td>
+    <td><%= link_to 'Show', campaign %></td>
+    <td><%= link_to 'Edit', edit_campaign_path(campaign) %></td>
+    <td class ="delete"><%= button_to 'Destroy', campaign, :confirm => '¿Estás seguro?',
+      :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<div id="links">
+  <%= link_to 'New Campaign', new_campaign_path, :class => :important_action %>
+</div>
+
+

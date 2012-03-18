@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  date: 2012-03-14
+  name: MyString
+  number: 1
+  locality: MyString
+
+two:
+  date: 2012-03-14
+  name: MyString
+  number: 1
+  locality: MyString

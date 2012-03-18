@@ -1,0 +1,13 @@
+<table>
+  <%= form_for :dump_contacts, :url =>{:action => "import_csv_contacts"}, :html => { :multipart => true } do |f| %>
+  <tr>
+    <td><strong><%= f.label 'Importar Contactos' %></strong></td>
+    <td><%= f.file_field :file %></td>
+  </tr>
+  <tr>
+    <td><%= f.submit 'Adjuntar archivo CSV' %></td>
+    <td></td>
+  </tr>
+<% end %>
+</table>
+
