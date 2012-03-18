@@ -18,6 +18,26 @@
   <%= @contact.locality %>
 </p>
 
+<% if @contact.contact_state.present? %>
+<p>
+  <b>Estado:</b>
+  <%= @contact.contact_state.state %>
+</p>
+<% end %>
+
+<% if @contact.comment.present? %>
+<p>
+  <b>Comentario:</b>
+  <%= @contact.comment %>
+</p>
+<% end %>
+
+<% if @contact.user.present? %>
+<p>
+  <b>Usuario:</b>
+  <%= @contact.user.name %>
+</p>
+<% end %>
 
 <%= link_to 'Edit', edit_contact_path(@contact) %> |
 <%= link_to 'Back', contacts_path %>

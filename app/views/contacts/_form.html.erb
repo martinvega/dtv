@@ -30,14 +30,24 @@
   <div class="field">
     <%= f.label 'Estado' %><br />
     <div id ="state_select">
-      <%= f.collection_select(:contact_state_id, ContactState.all, :id, 
-        :state, :prompt => 'Seleccione el estado') %>
+      <% if @contact.contact_state.present? %>
+        <%= f.collection_select(:contact_state_id, ContactState.all, :id, 
+          :state, :prompt => 'Seleccione el estado', 
+          :selected => @contact.contact_state.state ) %>
+      <% else %>
+        <%= f.collection_select(:contact_state_id, ContactState.all, :id, 
+          :state, :prompt => 'Seleccione el estado') %>
+      <% end %>
     </div>
   </div>
-  <div class="comment" style ="display: none;">
-    <%= f.label 'Comentario' %><br />
-    <%= f.text_area :comment %>
-  </div>
+  <% if @contact.comment.present? %>
+    <div class="comment">
+  <% else %>
+    <div class="comment" style ="display: none;">
+  <% end %>
+      <%= f.label 'Comentario' %><br />
+      <%= f.text_area :comment %>
+    </div>
   
   <div class="actions">
     <%= f.submit %>
