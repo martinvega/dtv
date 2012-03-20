@@ -1,0 +1,18 @@
+<p>Hola,</p> 
+
+<p>Este es un mail enviado por una consulta en el sitio web 
+  multisatdigital.com.ar.<p>
+
+<p>Los datos son los siguientes:<p>
+<ul>
+  <li>Nombre: <% @contract.nombre %></li>
+  <li>DNI: <% @contract.dni %></li>
+  <li>Email: <% @contract.email %></li>
+  <li>Teléfono: <% @contract.telefono %></li>
+<% if @contract.interesado_en.present? %>
+  <li>Interesado en: <% @contract.interesado_en %></li>
+<% end %>
+  <% if @contract.comentarios.present? %>
+  <li>Comentario: <% @contract.comentarios %></li>
+<% end %>
+<ul>
