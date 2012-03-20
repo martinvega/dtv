@@ -270,38 +270,89 @@ div#links {
   }
 }
 
-div#login {
-  margin: 10em auto 0em auto;
-  width: 40em;
-  height: 25em;
-  background-color: #f6f6f6;
-  border-top: 10px solid $second-color;
-  padding: 1em;
-  -moz-border-radius: 0px 0px 15px 15px;
-  -webkit-border-radius: 0px 0px 15px 15px;
-  box-shadow: 8px 8px 25px black;
-  
-  .field {
-    margin: auto;
-    padding: 0.5em;
-    width: 30%;
-  }
-  
-  .field input[type="submit"]{
-    font: inherit;
-    padding: 0.5em;
-    background: #D8D8D8;
-    -moz-border-radius: 5px 5px 5px 5px;
-    -webkit-border-radius: 5px 5px 5px 5px;
-    @include transition(background, 0.7s);
-  }
-  
-  .field input[type="submit"]:hover{
-    background: $second-color;
-    color: #ffffff;
-  }
-}
+div#login_container {
+     
+  div#contact {
     
+    position: absolute;
+    top: 10em;
+    left: 10em;
+    width: 40em;
+    height: 30em;
+    background-color: #f6f6f6;
+    border: 2px solid $second-color;
+    padding: 1em;
+    -moz-border-radius: 15px 15px 15px 15px;
+    -webkit-border-radius: 15px 15px 15px 15px;
+    box-shadow: 8px 8px 25px black;
+    
+    div#phone {
+      width: 70%;
+      position: relative;
+      top: 4em;
+      left: 12em;
+           
+    }
+    
+    div#dtv_logo {
+      top: 1em;
+      margin-left: 11em;
+      margin-right: auto;
+      width: 70%;
+    }
+    
+    div#contract_now {
+      margin-left: 15em;
+      margin-top: 4em;
+      width: 20%;
+      color: white;
+      background: #F79B06;
+      padding: 8px 9px;
+      line-height: 1.5em;
+      font-weight: bold;
+      text-shadow: 1px 1px 1px rgba(0, 0, 0, .3);
+      box-shadow: 0 2px 2px -1px rgba(0, 0, 0, .4), 0 .9em .5em -0.2em rgba(255, 255, 255, .2) inset;
+      -moz-border-radius: 5px 5px 5px 5px;
+      -webkit-border-radius: 5px 5px 5px 5px;
+      
+      &:hover{
+        color: pink;
+        @include transition(color, 0.5s);
+      
+     }
+    }
+  }
+
+  div#login {
+    margin: 10em 4em auto auto;
+    width: 20em;
+    height: 30em;
+    background-color: #f6f6f6;
+    border-top: 10px solid $second-color;
+    padding: 1em;
+    -moz-border-radius: 0px 0px 15px 15px;
+    -webkit-border-radius: 0px 0px 15px 15px;
+    box-shadow: 8px 8px 25px black;
+     .field {
+      margin-left: auto;
+      margin-right: auto;
+      width: 70%;
+    }
+
+    .field input[type="submit"]{
+      padding: 0.5em;
+      background: #D8D8D8;
+      -moz-border-radius: 5px 5px 5px 5px;
+      -webkit-border-radius: 5px 5px 5px 5px;
+      @include transition(background, 0.7s);
+    }
+
+    .field input[type="submit"]:hover{
+      background: $second-color;
+      color: #ffffff;
+    }
+  }
+}    
 div#app_content {
   width: 95%;
   margin: 1% auto;
