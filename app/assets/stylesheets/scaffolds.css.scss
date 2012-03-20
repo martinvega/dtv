@@ -180,12 +180,6 @@ td {
   padding: .3em .5em;
 }
 
-textarea {
-  font: inherit;
-  height: 10em;
-}
-
-
 th {
   padding: .5em .5em;
   text-align: left;
@@ -270,6 +264,47 @@ div#links {
   }
 }
 
+div#contract_form {
+  width: 41%;
+  margin: 1% auto;
+  padding: 1em 1em 2em 1em;
+  position: absolute;
+  top: 4em;
+  left: 27em;
+  
+  background-color: #f6f6f6;
+  border: 2px solid $second-color;
+  padding: 1em;
+  -moz-border-radius: 15px 15px 15px 15px;
+  -webkit-border-radius: 15px 15px 15px 15px;
+  box-shadow: 8px 8px 25px black;
+  .field {
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+  }
+  img {
+    margin-left: 12.5em;
+  }
+  .field input {
+    width: 25em;
+   }
+  .field input[type="submit"]{
+    margin-left: 8em;
+    width: 10em;
+    padding: 0.5em;
+    background: #819FF7;
+    -moz-border-radius: 5px 5px 5px 5px;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    @include transition(background, 0.7s);
+  }
+  .field input[type="submit"]:hover{
+    background: $second-color;
+    color: #ffffff;
+  }
+  
+}
+
 div#login_container {
      
   div#contact {
@@ -333,7 +368,7 @@ div#login_container {
     -moz-border-radius: 0px 0px 15px 15px;
     -webkit-border-radius: 0px 0px 15px 15px;
     box-shadow: 8px 8px 25px black;
-     .field {
+    .field {
       margin-left: auto;
       margin-right: auto;
       width: 70%;

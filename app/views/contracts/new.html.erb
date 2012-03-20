@@ -1,0 +1,55 @@
+<% options = [] %>
+
+<% DIRECTV_OPTIONS.each do |dtv_option| %>
+  <% options << dtv_option  %>
+<% end %>
+
+<%= form_tag :action => :send_contact do %>
+
+<div id="contract_form">
+  <% if @contract.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@contract.errors.count, "error") %> prohibited this contract from being saved:</h2>
+
+      <ul>
+      <% @contract.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= image_tag 'directvLogo.jpg', :size => "150x100",
+      :alt => "Multisat Digital" %>
+  
+  <div class="field">
+    <%= label_tag 'Nombre completo' %><br />
+    <%= text_field_tag :nombre %>
+  </div>
+  <div class="field">
+    <%= label_tag 'DNI' %><br />
+    <%= text_field_tag :dni %>
+  </div>
+  <div class="field">
+    <%= label_tag 'E-mail' %><br />
+    <%= text_field_tag :email %>
+  </div>
+  <div class="field">
+    <%= label_tag 'Teléfono' %><br />
+    <%= text_field_tag :telefono %>
+  </div>
+  <div class="field">
+    <%= label_tag 'Interesado en (opcional)' %><br />
+    <%= select_tag :interesado_en , options_for_select(options), :prompt => 'Seleccione ..' %>
+  </div>
+  <div class="field">
+    <%= label_tag 'Comentarios (opcional)' %><br />
+    <%= text_area_tag :comentarios, nil, :rows => 5, :cols => 40 %>
+  </div>
+  
+  <div class="field">
+    <%= submit_tag 'Enviar' %>
+  </div>
+  
+</div>
+
+<% end %>

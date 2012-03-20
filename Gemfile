@@ -12,6 +12,7 @@ gem 'validates_timeliness'
 gem "dynamic_form", "~> 1.1.4"
 gem "jquery_datepicker", "~> 0.3.2"
 
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -21,7 +22,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
-
+gem "validatable", "~> 1.6.7"
 # Use unicorn as the web server
 # gem 'unicorn'
 

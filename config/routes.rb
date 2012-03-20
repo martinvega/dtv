@@ -1,4 +1,6 @@
 Dtv::Application.routes.draw do
+  get "contact/index"
+
   resources :contacts do
     collection do
       get :import_csv
@@ -7,11 +9,18 @@ Dtv::Application.routes.draw do
   end
 
   resources :campaigns
+  
+  resources :contracts do
+    collection do
+      post :send_contact
+    end
+  end
 
   resources :users do
     collection do
       get :login
       post :create_session
+      get :contract_now
     end
 
     member do
