@@ -21,15 +21,18 @@
     <td><%= contact.locality %></td>
     <td><%= contact.contact_state.state if contact.contact_state.present? %></td>
     <td><%= contact.user.name if contact.user.present? %></td>
-    <td><%= link_to 'Show', contact %></td>
-    <td><%= link_to 'Edit', edit_contact_path(contact) %></td>
-    <td class="delete"><%= button_to 'Destroy', contact, :confirm => '¿Estás seguro?',
-      :method => :delete %></td>
+    <td><%= link_to 'Ver', contact %></td>
+    <td><%= link_to 'Editar', edit_contact_path(contact) %></td>
+    <td class="delete"><%= button_to 'Eliminar', contact, 
+      :confirm => '¿Estás seguro?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <div id="links">
-  <%= link_to 'New Contact', new_contact_path, :class => :important_action %> | 
-  <%= link_to 'Importar Contactos CSV', import_csv_contacts_path, :class => :important_action %>
+  <%= link_to 'Nuevo Contacto', new_contact_path, :class => :important_action %> | 
+  <%= link_to 'Importar Contactos CSV', import_csv_contacts_path, 
+    :class => :important_action %><br />
+  <%= link_to 'Cargar Estados', load_contacts_contacts_path,
+    :class => :important_action %>  
 </div>

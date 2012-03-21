@@ -14,5 +14,5 @@ class Contact < ActiveRecord::Base
     :allow_blank => true, :greater_than => 0, :less_than => 5000000
   validates_uniqueness_of :number, :allow_nil => true, :allow_blank => true
   validates_date :date, :allow_nil => true, :allow_blank => true
-  
+    
 end

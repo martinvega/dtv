@@ -5,6 +5,10 @@ Dtv::Application.routes.draw do
     collection do
       get :import_csv
       post :import_csv_contacts
+      get :load_contacts
+    end
+    member do
+      put :update_state
     end
   end
 

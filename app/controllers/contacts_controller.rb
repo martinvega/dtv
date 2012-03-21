@@ -62,18 +62,45 @@ class ContactsController < ApplicationController
   # PUT /contacts/1
   # PUT /contacts/1.json
   def update
-    @contact = Contact.find(params[:id])
-
-    if @contact.comment.present?
-      @contact.user = @auth_user
-    end
-    
+    @contact.user = @auth_user
+       
     respond_to do |format|
       if @contact.update_attributes(params[:contact])
         format.html { redirect_to @contact, :notice => 'Contact was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render :action => "edit" }
+        format.json { render :json => @contact.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+  
+  def find_contact
+    contact = Contact.where(:contact_state_id => nil).first!
+                
+    rescue ActiveRecord::RecordNotFound
+      flash[:alert] = 'No quedan mas contactos por cargar, todos ya cuentan con un
+      estado asignado'
+      redirect_to contacts_path  
+  end
+  
+  def load_contacts
+    @contact = Contact.find((find_contact).id)  
+  end
+  
+  def update_state
+    @contact = Contact.find(params[:id])
+    @contact.user = @auth_user
+        
+    respond_to do |format|
+      if @contact.update_attributes(params[:contact])
+        format.html { 
+          flash[:notice] = 'El estado ha sido guardado satisfactoriamente, 
+          puede continuar con la carga'
+          render :action => :load_contacts }
+        format.json { head :ok }
+      else
+        format.html { render :action => 'load_contacts' }
         format.json { render :json => @contact.errors, :status => :unprocessable_entity }
       end
     end
