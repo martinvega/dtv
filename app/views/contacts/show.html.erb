@@ -1,43 +1,43 @@
 <p>
-  <b>Date:</b>
+  <b><%= Contact.human_attribute_name 'date' %>:</b>
   <%= @contact.date %>
 </p>
 
 <p>
-  <b>Name:</b>
+  <b><%= Contact.human_attribute_name 'name' %>:</b>
   <%= @contact.name %>
 </p>
 
 <p>
-  <b>Number:</b>
+  <b><%= Contact.human_attribute_name 'number' %>:</b>
   <%= @contact.number %>
 </p>
 
 <p>
-  <b>Locality:</b>
+  <b><%= Contact.human_attribute_name 'locality' %>:</b>
   <%= @contact.locality %>
 </p>
 
 <% if @contact.contact_state.present? %>
 <p>
-  <b>Estado:</b>
+  <b><%= ContactState.human_attribute_name 'state' %>:</b>
   <%= @contact.contact_state.state %>
 </p>
 <% end %>
 
 <% if @contact.comment.present? %>
 <p>
-  <b>Comentario:</b>
+  <b><%= Contact.human_attribute_name 'comment' %>:</b>
   <%= @contact.comment %>
 </p>
 <% end %>
 
 <% if @contact.user.present? %>
 <p>
-  <b>Usuario:</b>
+  <b><%= User.human_attribute_name 'user' %>:</b>
   <%= @contact.user.name %>
 </p>
 <% end %>
 
-<%= link_to 'Edit', edit_contact_path(@contact) %> |
-<%= link_to 'Back', contacts_path %>
+<%= link_to 'Editar', edit_contact_path(@contact) %> |
+<%= link_to 'Volver', contacts_path %>

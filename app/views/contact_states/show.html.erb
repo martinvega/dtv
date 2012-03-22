@@ -1,7 +1,7 @@
 <p>
-  <b>State:</b>
+  <b><%= ContactState.human_attribute_name 'state' %>:</b>
   <%= @contact_state.state %>
 </p>
 
-<%= link_to 'Edit', edit_contact_state_path(@contact_state) %> |
-<%= link_to 'Back', contact_states_path %>
+<%= link_to 'Editar', edit_contact_state_path(@contact_state) %> |
+<%= link_to 'Volver', contact_states_path %>

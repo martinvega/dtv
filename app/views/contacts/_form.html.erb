@@ -1,8 +1,7 @@
 <%= form_for(@contact) do |f| %>
   <% if @contact.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
-
+      <h2>El Contacto no se pudo guardar por los siguientes errores:</h2>
       <ul>
       <% @contact.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -28,7 +27,7 @@
     <%= f.text_field :locality %>
   </div>
   <div class="field">
-    <%= f.label 'Estado' %><br />
+    <%= f.label :contact_state %><br />
     <div id ="state_select">
       <% if @contact.contact_state.present? %>
         <%= f.collection_select(:contact_state_id, ContactState.all, :id, 
@@ -45,7 +44,7 @@
   <% else %>
     <div class="comment" style ="display: none;">
   <% end %>
-      <%= f.label 'Comentario' %><br />
+      <%= f.label :comment %><br />
       <%= f.text_area :comment %>
     </div>
   

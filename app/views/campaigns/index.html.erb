@@ -2,8 +2,8 @@
 
 <table>
   <tr>
-    <th>Month</th>
-    <th>Year</th>
+    <th><%= Campaign.human_attribute_name 'month' %></th>
+    <th><%= Campaign.human_attribute_name 'year'  %></th>
     <th></th>
     <th></th>
     <th></th>
@@ -13,16 +13,16 @@
   <tr class="<%= cycle(:even, :odd) %>">
     <td><%= campaign.month %></td>
     <td><%= campaign.year %></td>
-    <td><%= link_to 'Show', campaign %></td>
-    <td><%= link_to 'Edit', edit_campaign_path(campaign) %></td>
-    <td class ="delete"><%= button_to 'Destroy', campaign, :confirm => '¿Estás seguro?',
+    <td><%= link_to 'Ver', campaign %></td>
+    <td><%= link_to 'Editar', edit_campaign_path(campaign) %></td>
+    <td class ="delete"><%= button_to 'Eliminar', campaign, :confirm => '¿Estás seguro?',
       :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <div id="links">
-  <%= link_to 'New Campaign', new_campaign_path, :class => :important_action %>
+  <%= link_to 'Nueva Campaña', new_campaign_path, :class => :important_action %>
 </div>
 
 

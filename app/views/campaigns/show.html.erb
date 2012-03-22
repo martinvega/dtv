@@ -1,13 +1,13 @@
 <p>
-  <b>Month:</b>
+  <b><%= Campaign.human_attribute_name 'month' %>:</b>
   <%= @campaign.month %>
 </p>
 
 <p>
-  <b>Year:</b>
+  <b><%= Campaign.human_attribute_name 'year' %>:</b>
   <%= @campaign.year %>
 </p>
 
 
-<%= link_to 'Edit', edit_campaign_path(@campaign) %> |
-<%= link_to 'Back', campaigns_path %>
+<%= link_to 'Editar', edit_campaign_path(@campaign) %> |
+<%= link_to 'Volver', campaigns_path %>

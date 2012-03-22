@@ -1,18 +1,18 @@
 <p>
-  <b>Name:</b>
+  <b><%= User.human_attribute_name 'name' %>:</b>
   <%= @user.name %>
 </p>
 
 <p>
-  <b>User:</b>
+  <b><%= User.human_attribute_name 'user' %>:</b>
   <%= @user.user %>
 </p>
 
 <p>
-  <b>Administrador:</b>
+  <b><%= User.human_attribute_name 'admin' %>:</b>
   <%= @user.admin? ? "Si" : "No" %>
 </p>
 
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<%= link_to 'Editar', edit_user_path(@user) %> |
+<%= link_to 'Volver', users_path %>
