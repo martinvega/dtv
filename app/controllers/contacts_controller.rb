@@ -43,11 +43,8 @@ class ContactsController < ApplicationController
   # POST /contacts.json
   def create
     @contact = Contact.new(params[:contact])
-    
-    if @contact.comment.present?
-      @contact.user = @auth_user
-    end
-    
+    @contact.user = @auth_user
+       
     respond_to do |format|
       if @contact.save
         format.html { redirect_to @contact, :notice => 'El contacto ha sido creado satisfactoriamente' }
@@ -62,6 +59,7 @@ class ContactsController < ApplicationController
   # PUT /contacts/1
   # PUT /contacts/1.json
   def update
+    @contact = Contact.find(params[:id])
     @contact.user = @auth_user
        
     respond_to do |format|
