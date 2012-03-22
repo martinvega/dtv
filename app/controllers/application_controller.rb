@@ -46,12 +46,21 @@ class ApplicationController < ActionController::Base
       }
       session[:go_to] = go_to unless action == :logout
       @auth_user = nil
-      redirect_to_login "Debe estar autenticado"
+      flash[:alert] = 'Debe estar autenticado'
+      redirect_to_login 
     else
       response.headers['Cache-Control'] = 'no-cache, no-store'
     end
   end
 
+  def admin
+    if @auth_user.admin?
+      true
+    else
+      flash[:alert] = 'Debe ser administrador'
+      redirect_to_login 
+    end
+  end
   # Redirige la navegación a la página de autenticación, enviando el mensaje
   # indicado
   def redirect_to_login(mensaje = nil)

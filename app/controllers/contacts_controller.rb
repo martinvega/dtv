@@ -1,11 +1,18 @@
 class ContactsController < ApplicationController
   before_filter :auth
+  before_filter :admin, :except => [:index, :create, :new, :find_contact, 
+    :load_contacts, :update_state]
   require 'csv'
   # GET /contacts
   # GET /contacts.json
   def index
-    @contacts = Contact.all
-
+    
+    if @auth_user.admin?
+      @contacts = Contact.all
+    else
+      @contacts = Contact.where(:user_id => @auth_user.id)
+    end
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @contacts }

@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_filter :auth, :except => [:login, :create_session]
+  before_filter :admin, :except => [:login, :create_session, :logout]
   # GET /users
   # GET /users.json
   def index

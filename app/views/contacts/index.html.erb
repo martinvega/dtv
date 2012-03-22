@@ -30,9 +30,11 @@
 </table>
 
 <div id="links">
+  <% if @auth_user.admin? %>
   <%= link_to 'Nuevo Contacto', new_contact_path, :class => :important_action %> | 
   <%= link_to 'Importar Contactos CSV', import_csv_contacts_path, 
     :class => :important_action %><br />
+  <% end %>
   <%= link_to 'Cargar Estados', load_contacts_contacts_path,
     :class => :important_action %>  
 </div>
