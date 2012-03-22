@@ -1,3 +1,4 @@
+<div id="load_contact">
 <%= form_for @contact, :url => {:controller => :contacts, 
   :action => :update_state, :id => @contact.id} do |f| %>
   <% if @contact.errors.any? %>
@@ -44,6 +45,10 @@
   </div>
 <% end %>
 
-<div id="links">  
-  <%= link_to 'Buscar Contacto', load_contacts_contacts_path, :class => :important_action %>
+</div>
+
+<div id="links">
+  <div id="search_contact">
+    <%= link_to 'Buscar Contacto', load_contacts_contacts_path, :class => :important_action %>
+  </div>
 </div>

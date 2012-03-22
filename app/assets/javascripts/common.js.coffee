@@ -16,6 +16,12 @@ $ ->
     window.open('http://www.directv.com.ar/')
     window.focus().delay(100)
     
+  $('#search_contact').click ->
+    $('#load_contact').fadeOut(500)
+    $('#load_contact').fadeIn(500)
+
+    
+    
     
         
    

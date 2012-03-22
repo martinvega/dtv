@@ -85,6 +85,7 @@ a {
   }
 
   &.important_action {
+    padding-top: 10px;
     font-weight: bold;
     color: $second-color;
   }
