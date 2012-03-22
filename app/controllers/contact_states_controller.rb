@@ -45,7 +45,7 @@ class ContactStatesController < ApplicationController
 
     respond_to do |format|
       if @contact_state.save
-        format.html { redirect_to @contact_state, :notice => 'Contact state was successfully created.' }
+        format.html { redirect_to @contact_state, :notice => 'El estado ha sido creado satisfactoriamente' }
         format.json { render :json => @contact_state, :status => :created, :location => @contact_state }
       else
         format.html { render :action => "new" }
@@ -61,7 +61,7 @@ class ContactStatesController < ApplicationController
 
     respond_to do |format|
       if @contact_state.update_attributes(params[:contact_state])
-        format.html { redirect_to @contact_state, :notice => 'Contact state was successfully updated.' }
+        format.html { redirect_to @contact_state, :notice => 'El estado ha sido actualizado satisfactoriamente' }
         format.json { head :ok }
       else
         format.html { render :action => "edit" }
