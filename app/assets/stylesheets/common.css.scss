@@ -53,9 +53,9 @@ a {
   &:visited {
     color: #666; }
   &:hover {
-    color: #fff;
-    background-color: #000; } 
-
+    color: $second-color;
+    @include transition(color, 0.5s);
+  } 
   &.real{
     color: $main-color;
     padding: 1px 3px;
@@ -337,14 +337,14 @@ div#login_container {
       width: 70%;
     }
     
-    div#contract_now {
-      margin-left: 15em;
-      margin-top: 4em;
-      width: 20%;
+    a#contract_now {
       color: white;
+      margin-left: 14em;
+      margin-top: 15em;
+      width: 20%;
       background: #F79B06;
-      padding: 8px 9px;
-      line-height: 1.5em;
+      padding: 15px 18px;
+      line-height: 7.5em;
       font-weight: bold;
       text-shadow: 1px 1px 1px rgba(0, 0, 0, .3);
       box-shadow: 0 2px 2px -1px rgba(0, 0, 0, .4), 0 .9em .5em -0.2em rgba(255, 255, 255, .2) inset;
@@ -352,7 +352,7 @@ div#login_container {
       -webkit-border-radius: 5px 5px 5px 5px;
       
       &:hover{
-        color: pink;
+        color: yellow;
         @include transition(color, 0.5s);
       
      }
