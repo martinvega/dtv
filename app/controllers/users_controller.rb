@@ -102,11 +102,7 @@ class UsersController < ApplicationController
     if auth_user && auth_user.password && auth_user.password == @user.password then
       session[:last_access] = Time.now
       session[:user_id] = auth_user.id
-      if auth_user.admin?
-        go_to = session[:go_to] || { :action => :index }
-      else
-        go_to = {:controller => :contacts, :action => :index}
-      end
+      go_to = {:controller => :contacts, :action => :index}
       session[:go_to] = nil
       redirect_to go_to
     else
