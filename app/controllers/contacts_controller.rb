@@ -87,8 +87,10 @@ class ContactsController < ApplicationController
   end
   
   def load_contacts
+    
     unless params[:campaign].nil?
       @campaign = Campaign.find(params[:campaign])
+      @selected = @campaign.id
       date = @campaign.date
       contact = Contact.where('contact_state_id IS NULL AND date BETWEEN :start AND :end',
         :start => date.beginning_of_month,

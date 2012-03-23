@@ -5,7 +5,9 @@
 <%= form_tag load_contacts_contacts_path, :method => 'get' do %>
 
   <div class="field">
-    <%= select_tag :campaign, options_from_collection_for_select(Campaign.all, "id", "date") %>
+    <%= select_tag :campaign, 
+      options_from_collection_for_select(Campaign.all, "id", "date", @selected) %>
+      
   </div>
 
 <div id="links">
