@@ -11,7 +11,7 @@ class Contact < ActiveRecord::Base
   validates :date, :name, :number, :presence => true
   validates_length_of :name, :locality, :comment, :maximum => 255
   validates_numericality_of :number, :only_integer => true, :allow_nil => true,
-    :allow_blank => true, :greater_than => 0, :less_than => 5000000
+    :allow_blank => true, :greater_than => 0, :less_than => 10000000000
   validates_uniqueness_of :number, :allow_nil => true, :allow_blank => true
   validates_date :date, :allow_nil => true, :allow_blank => true
   
