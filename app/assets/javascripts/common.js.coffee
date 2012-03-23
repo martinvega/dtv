@@ -5,6 +5,7 @@ $ ->
     
   $(document).ready ->
     $('#datepicker').datepicker({dateFormat: 'dd-mm-yy'})
+    $('#campaign_picker').datepicker({dateFormat: 'dd-mm-yy'})         
     
   $('#state_select').click ->
     if (($("#state_select option:selected").text() == 'RE LLAMAR') || ($("#state_select option:selected").text() == 'RETENIDO') || ($("#state_select option:selected").text() == 'RETENIDO X CICLO') || ($("#state_select option:selected").text() == 'RENOVACIÓN'))

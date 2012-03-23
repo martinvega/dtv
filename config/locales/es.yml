@@ -39,8 +39,7 @@ es:
       
     attributes:
       campaign:
-        month: 'Mes'
-        year: 'Año'
+        date: 'Fecha'
       contact:
         date: 'Fecha'
         name: 'Nombre'

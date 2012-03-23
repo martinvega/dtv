@@ -86,28 +86,31 @@ class ContactsController < ApplicationController
     end
   end
   
-  def find_contact
-    contact = Contact.where(:contact_state_id => nil).first!
-                
-    rescue ActiveRecord::RecordNotFound
-      flash[:alert] = 'No quedan mas contactos por cargar, todos ya cuentan con un
-      estado asignado'
-      redirect_to contacts_path  
-  end
-  
   def load_contacts
-    @contact = Contact.find((find_contact).id)  
+    unless params[:campaign].nil?
+      @campaign = Campaign.find(params[:campaign])
+      date = @campaign.date
+      contact = Contact.where('contact_state_id IS NULL AND date BETWEEN :start AND :end',
+        :start => date.beginning_of_month,
+        :end => date.end_of_month).first!
+      @contact = Contact.find(contact.id)
+    end
+      
+  rescue ActiveRecord::RecordNotFound
+      flash[:alert] = 'No quedan mas contactos por cargar para la campaña seleccionada'
+      redirect_to contacts_path  
+    
   end
   
   def update_state
     @contact = Contact.find(params[:id])
-    @contact.user = @auth_user
-        
+           
     respond_to do |format|
       if @contact.update_attributes(params[:contact])
+        @contact.user = @auth_user
         format.html { 
           flash[:notice] = 'El estado ha sido guardado satisfactoriamente, 
-          puede continuar con la carga'
+          presione Buscar Contacto para continuar con la carga'
           render :action => :load_contacts }
         format.json { head :ok }
       else

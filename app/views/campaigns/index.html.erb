@@ -1,7 +1,6 @@
 <table>
   <tr>
-    <th><%= Campaign.human_attribute_name 'month' %></th>
-    <th><%= Campaign.human_attribute_name 'year'  %></th>
+    <th><%= Campaign.human_attribute_name 'date' %></th>
     <th></th>
     <th></th>
     <th></th>
@@ -9,8 +8,7 @@
 
 <% @campaigns.each do |campaign| %>
   <tr class="<%= cycle(:even, :odd) %>">
-    <td><%= campaign.month %></td>
-    <td><%= campaign.year %></td>
+    <td><%= campaign.date %></td>
     <td><%= link_to 'Ver', campaign %></td>
     <td><%= link_to 'Editar', edit_campaign_path(campaign) %></td>
     <td class ="delete"><%= button_to 'Eliminar', campaign, :confirm => '¿Estás seguro?',

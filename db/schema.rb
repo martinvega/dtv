@@ -10,13 +10,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120316220458) do
+ActiveRecord::Schema.define(:version => 20120322215345) do
 
   create_table "campaigns", :force => true do |t|
-    t.integer  "month"
-    t.integer  "year"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "date"
   end
 
   create_table "contact_states", :force => true do |t|
