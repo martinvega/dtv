@@ -1,20 +1,17 @@
-<% unless @contact.nil?  %>
-  <%= render :partial => 'contact' %>
-<% end %>
-
-<%= form_tag load_contacts_contacts_path, :method => 'get' do %>
-
-  <div class="field">
-    <%= select_tag :campaign, 
-      options_from_collection_for_select(Campaign.all, "id", "date", @selected) %>
-      
-  </div>
-
-<div id="links">
-  <div id="search_contact">
-    <%= submit_tag 'Buscar Contacto' %>
-  </div>
-</div>
-
+<div id="select_campaign">
+  <% unless @contact.nil?  %>
+    <%= render :partial => 'contact' %>
   <% end %>
 
+  <%= form_tag load_contacts_contacts_path, :method => 'get' do %>
+
+    <div class="field">
+      <%= label_tag 'Seleccione la campaña' %><br />
+      <%= select_tag :campaign, 
+        options_from_collection_for_select(Campaign.all, "id", "date", @selected) %>
+    </div>
+    <div id="search_contact">
+      <%= submit_tag 'Buscar Contacto' %>
+    </div>
+  <% end %>
+</div>

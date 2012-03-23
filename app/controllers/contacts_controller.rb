@@ -99,7 +99,7 @@ class ContactsController < ApplicationController
     end
       
   rescue ActiveRecord::RecordNotFound
-      flash[:alert] = 'No quedan mas contactos por cargar para la campaña seleccionada'
+      flash[:alert] = 'No quedan mas contactos sin estado para la campaña seleccionada'
       redirect_to contacts_path  
     
   end

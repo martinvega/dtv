@@ -398,6 +398,26 @@ div#app_content {
   box-shadow: 14px 14px 15px black;
   }
 
+div#load_contact .actions{
+  margin: 1.5em 0 2.5em 0;    
+}
+  
+div#select_campaign {
+  margin-left: 3em;
+  div#search_contact input[type="submit"]{
+    padding: 0.5em;
+    background: #D8D8D8;
+    -moz-border-radius: 5px 5px 5px 5px;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    @include transition(background, 0.7s);
+  }
+
+  div#search_contact input[type="submit"]:hover{
+    background: $second-color;
+    color: #ffffff;
+  }  
+}
+
 div#menu_container {
   padding: .5em 3em;
   height: 2.3em;
