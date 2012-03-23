@@ -3,10 +3,10 @@ class ContactsController < ApplicationController
   before_filter :admin, :except => [:index, :create, :new, :find_contact, 
     :load_contacts, :update_state]
   require 'csv'
+  require 'iconv'
   # GET /contacts
   # GET /contacts.json
   def index
-    
     if @auth_user.admin?
       @contacts = Contact.paginate(
         :page => params[:page],
@@ -127,20 +127,25 @@ class ContactsController < ApplicationController
   
   def import_csv_contacts
     if params[:dump_contacts] && File.extname(params[:dump_contacts][:file].original_filename).downcase == '.csv'
-      @parsed_file=CSV::Reader.parse(params[:dump_questions][:file], delimiter = ';')
+      @parsed_file=CSV::Reader.parse(params[:dump_contacts][:file], delimiter = ',')
+      conv = Iconv.new('UTF-8//IGNORE//TRANSLIT', 'ISO-8859-15')
       n=0
       @parsed_file.each  do |row|
         c = Contact.new
-        c.date = row[0]
-        c.name = row[1]
-        c.number = row[2]
-        c.locality = row[3]
-        cs = ContactState.new
-        cs.state = row[4]
-        # cs.comment = row[5]
-        c.contact_state = cs
+        c.date = row[0].to_date
+        c.name = conv.iconv(row[1].to_s)
+        c.number = row[2].to_i
+        c.locality = conv.iconv(row[3].to_s)
+        if row[4]
+          state = ContactState.find_by_state(conv.iconv(row[4].to_s.upcase))
+          if state
+            c.contact_state = state
+          end
+        end
+        puts "DATE = #{c.date} / c.name #{c.name} / c.number = #{c.number} /
+        c.locality = #{c.locality} / c.state = #{c.contact_state}"
         if c.save
-        n+=1
+          n+=1
         end
       end
       flash[:notice] = "Se han importado #{n} contactos satisfactoriamente"
