@@ -8,11 +8,11 @@ class Contact < ActiveRecord::Base
   accepts_nested_attributes_for :contact_state
   
   # Validaciones
-  validates :date, :name, :number, :presence => true
+  validates :name, :number, :presence => true
   validates_length_of :name, :locality, :comment, :maximum => 255
   validates_numericality_of :number, :only_integer => true, :allow_nil => true,
     :allow_blank => true, :greater_than => 0, :less_than => 10000000000
-  validates_uniqueness_of :number, :allow_nil => true, :allow_blank => true
+  validates_uniqueness_of :number, :name, :allow_nil => true, :allow_blank => true
   validates_date :date, :allow_nil => true, :allow_blank => true
   
 end
