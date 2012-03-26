@@ -1,7 +1,7 @@
 class ContactsController < ApplicationController
   before_filter :auth
-  before_filter :admin, :except => [:index, :create, :new, :find_contact, 
-    :load_contacts, :update_state]
+  before_filter :admin, :only => [:new, :create, :import_csv, :import_csv_contacts]
+  
   require 'csv'
   require 'iconv'
   # GET /contacts
