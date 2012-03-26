@@ -8,15 +8,32 @@ class ContactsController < ApplicationController
   # GET /contacts.json
   def index
     if @auth_user.admin?
-      @contacts = Contact.paginate(
+      if params[:state_id].present?
+        @contacts = Contact.paginate(
         :page => params[:page],
         :per_page => 10
-      )
+      ).where(:contact_state_id => params[:state_id])
+      else
+        @contacts = Contact.paginate(
+        :page => params[:page],
+        :per_page => 10
+        )
+      end
+      
     else
-      @contacts = Contact.where(:user_id => @auth_user.id).paginate(
+      if params[:state_id].present?
+        @contacts = Contact.where(:user_id => @auth_user.id, 
+          :contact_state_id => params[:state_id]).paginate(
+            :page => params[:page],
+            :per_page => 10
+            )        
+      else
+        @contacts = Contact.where(:user_id => @auth_user.id).paginate(
         :page => params[:page],
         :per_page => 10
-      )
+        )        
+      end
+      
     end
     
     respond_to do |format|
