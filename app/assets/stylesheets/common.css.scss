@@ -307,12 +307,18 @@ div#contract_form {
 }
 
 div#login_container {
-     
+  
+  div#portada {
+    position: absolute;
+    margin-top: 37em;
+    margin-left: 13em;
+  }
+  
   div#contact {
     
     position: absolute;
-    top: 10em;
-    left: 10em;
+    top: 5em;
+    left: 13em;
     width: 40em;
     height: 30em;
     background-color: #f6f6f6;
@@ -360,7 +366,7 @@ div#login_container {
   }
 
   div#login {
-    margin: 10em 4em auto auto;
+    margin: 5em 13.5em auto auto;
     width: 20em;
     height: 30em;
     background-color: #f6f6f6;
