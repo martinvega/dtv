@@ -2,6 +2,7 @@ class ContactsController < ApplicationController
   before_filter :auth
   before_filter :admin, :only => [:new, :create, :import_csv, :import_csv_contacts]
   
+  @state
   require 'csv'
   require 'iconv'
   # GET /contacts
@@ -9,6 +10,7 @@ class ContactsController < ApplicationController
   def index
     if @auth_user.admin?
       if params[:state_id].present?
+        @state = Contact.where(:contact_state_id => params[:state_id])
         @contacts = Contact.paginate(
         :page => params[:page],
         :per_page => 10
@@ -39,6 +41,10 @@ class ContactsController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @contacts }
+      format.pdf  {
+        Contact.to_pdf(Contact.all)
+        redirect_to "/#{Contact.pdf_relative_path}"
+      }
     end
   end
 
