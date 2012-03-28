@@ -1,3 +1,11 @@
+<% months = [] %>
+<% years = [] %>
+<% MONTHS.each_with_index do |month, i| %>
+  <% months << [month, i+1] %>
+<% end %>
+<% YEARS.each do |year| %>
+  <% years << year %>
+<% end %>
 <div id="select_campaign">
   <% unless @contact.nil?  %>
     <%= render :partial => 'contact' %>
@@ -7,8 +15,8 @@
 
     <div class="field">
       <%= label_tag 'Seleccione la campaña' %><br />
-      <%= select_tag :campaign, 
-        options_from_collection_for_select(Campaign.all, "id", "date", @selected) %>
+      <%= select_tag :campaign_month, options_for_select(months, @selected_month) %>
+      <%= select_tag :campaign_year, options_for_select(years, @selected_year) %>
     </div>
     <div id="search_contact">
       <%= submit_tag 'Buscar Contacto' %>

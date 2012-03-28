@@ -2,7 +2,6 @@ class ContactsController < ApplicationController
   before_filter :auth
   before_filter :admin, :only => [:new, :create, :import_csv, :import_csv_contacts]
   
-  @state
   require 'csv'
   require 'iconv'
   # GET /contacts
@@ -10,7 +9,6 @@ class ContactsController < ApplicationController
   def index
     if @auth_user.admin?
       if params[:state_id].present?
-        @state = Contact.where(:contact_state_id => params[:state_id])
         @contacts = Contact.paginate(
         :page => params[:page],
         :per_page => 10
@@ -111,10 +109,13 @@ class ContactsController < ApplicationController
   
   def load_contacts
     
-    unless params[:campaign].nil?
-      @campaign = Campaign.find(params[:campaign])
-      @selected = @campaign.id
-      date = @campaign.date
+    unless params[:campaign_month].nil? || params[:campaign_year].nil?
+      puts "MES: #{params[:campaign_month]} - ANIO: #{params[:campaign_year]}"
+      #@campaign = Campaign.find(params[:campaign])
+      @selected_year = params[:campaign_year].to_i
+      @selected_month = params[:campaign_month].to_i
+      date = DateTime.new(@selected_year, @selected_month)
+      puts "DATE: #{date}"
       contact = Contact.where('contact_state_id IS NULL AND date BETWEEN :start AND :end',
         :start => date.beginning_of_month,
         :end => date.end_of_month).first!

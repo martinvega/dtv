@@ -1,5 +1,28 @@
 require 'prawn/measurement_extensions'
 
+# Meses
+MONTHS = [
+  'Enero',
+  'Febrero',
+  'Marzo',
+  'Abril',
+  'Mayo',
+  'Junio',
+  'Julio',
+  'Agosto',
+  'Setiembre',
+  'Octubre',
+  'Noviembre',
+  'Diciembre'
+]
+
+# Años
+YEARS = [
+  2010,
+  2011,
+  2012
+]
+
 # Ruta a la carpeta pública
 PUBLIC_PATH = File.join(Rails.root, 'public')
 
