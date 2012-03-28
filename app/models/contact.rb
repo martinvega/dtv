@@ -19,17 +19,17 @@ class Contact < ActiveRecord::Base
     pdf = Prawn::Document.new(PDF_OPTIONS)
     pdf.font_size = PDF_FONT_SIZE
 
-    # Presentación
-    pdf.font_size((PDF_FONT_SIZE * 1.2).round) do
-      pdf.text 'Bolsa de Contactos', :style => :bold, :align => :center
-
+    # Imagen 
+    image = "#{Rails.root.to_s}/public/images/directvLogo.jpg"
+    pdf.image image, :scale => 0.1
+    
+    # Título
+    pdf.font_size((PDF_FONT_SIZE * 1.1).round) do
+      pdf.text "Bolsa de Contactos Multisat #{Time.now.to_date}", :style => :bold, :align => :center
       pdf.move_down pdf.font_size
     end
     
-    # Imagen 
-    #image = "#{Rails.root.to_s}/public/images/logo.jpg"
-    #pdf.image image, :scale => 0.2311    
-    
+    # Variables tabla
     data = []
     state = ''
     comment = ''
@@ -53,6 +53,7 @@ class Contact < ActiveRecord::Base
     end
 
     pdf.font_size((PDF_FONT_SIZE * 0.5).round) do
+      pdf.move_down pdf.font_size
       pdf.table data, :row_colors => ["FFFFFF","DDDDDD"],
         :width => pdf.margin_box.width
     end
@@ -62,7 +63,7 @@ class Contact < ActiveRecord::Base
       pdf.draw_text "#{i+1} / #{pdf.page_count}", :at=>[1,1], :size => (PDF_FONT_SIZE * 0.75).round
     end
     
-    FileUtils.mkdir_p File.dirname(Contact.pdf_full_path)
+    #FileUtils.mkdir_p File.dirname(Contact.pdf_full_path)
     pdf.render_file Contact.pdf_full_path
     
   end
