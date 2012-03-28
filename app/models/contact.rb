@@ -25,7 +25,8 @@ class Contact < ActiveRecord::Base
     
     # Título
     pdf.font_size((PDF_FONT_SIZE * 1.1).round) do
-      pdf.text "Bolsa de Contactos Multisat #{Time.now.to_date}", :style => :bold, :align => :center
+      date = Time.now.to_date
+      pdf.text "Bolsa de Contactos Multisat al #{date.day}/#{date.month}/#{date.year}", :style => :bold, :align => :center
       pdf.move_down pdf.font_size
     end
     
