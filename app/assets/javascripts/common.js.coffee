@@ -20,6 +20,7 @@ $ ->
   $('#search_contact').click ->
     $('#load_contact').fadeOut(500)
     $('#load_contact').fadeIn(500)
+    
 
     
     
@@ -31,4 +32,3 @@ $ ->
       
      
     
-   

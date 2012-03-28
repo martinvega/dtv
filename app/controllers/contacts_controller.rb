@@ -9,6 +9,7 @@ class ContactsController < ApplicationController
   def index
     if @auth_user.admin?
       if params[:state_id].present?
+        session[:state] = params[:state_id]
         @contacts = Contact.paginate(
         :page => params[:page],
         :per_page => 10
@@ -40,7 +41,14 @@ class ContactsController < ApplicationController
       format.html # index.html.erb
       format.json { render :json => @contacts }
       format.pdf  {
-        Contact.to_pdf(Contact.all)
+        puts "SESION #{session[:state]}"
+        if session[:state].present?
+          contacts = Contact.where(:contact_state_id => session[:state])
+        else
+          contacts = Contact.all
+        end
+        session[:state] = nil
+        Contact.to_pdf(contacts)
         redirect_to "/#{Contact.pdf_relative_path}"
       }
     end
