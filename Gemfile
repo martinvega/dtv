@@ -12,6 +12,7 @@ gem 'validates_timeliness'
 gem "dynamic_form", "~> 1.1.4"
 gem "jquery_datepicker", "~> 0.3.2"
 gem "prawn", "~> 0.12.0"
+gem "capistrano", "~> 2.11.2"
 
 
 # Gems used only for assets and not required

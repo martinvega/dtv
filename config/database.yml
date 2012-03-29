@@ -57,7 +57,7 @@ test:
   #min_messages: warning
 
 production:
-  database: dtv_production
+  database: multisat_dtv
   <<: *defaults
 
   # Connect on a TCP socket. Omitted by default since the client uses a
