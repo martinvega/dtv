@@ -119,7 +119,6 @@ class ContactsController < ApplicationController
     
     unless params[:campaign_month].nil? || params[:campaign_year].nil?
       puts "MES: #{params[:campaign_month]} - ANIO: #{params[:campaign_year]}"
-      #@campaign = Campaign.find(params[:campaign])
       @selected_year = params[:campaign_year].to_i
       @selected_month = params[:campaign_month].to_i
       date = DateTime.new(@selected_year, @selected_month)
@@ -138,10 +137,11 @@ class ContactsController < ApplicationController
   
   def update_state
     @contact = Contact.find(params[:id])
-           
+    @contact.user = @auth_user
+    
     respond_to do |format|
       if @contact.update_attributes(params[:contact])
-        @contact.user = @auth_user
+        
         format.html { 
           flash[:notice] = 'El estado ha sido guardado satisfactoriamente, 
           presione Buscar Contacto para continuar con la carga'
