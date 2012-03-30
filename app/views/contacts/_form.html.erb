@@ -1,4 +1,4 @@
-<%= form_for(@contact) do |f| %>
+<%= form_for @contact do |f| %>
   <% if @contact.errors.any? %>
     <div id="error_explanation">
       <h2>El Contacto no se pudo guardar por los siguientes errores:</h2>
@@ -30,9 +30,8 @@
     <%= f.label :contact_state %><br />
     <div id ="state_select">
       <% if @contact.contact_state.present? %>
-        <%= f.collection_select(:contact_state_id, ContactState.all, :id, 
-          :state, :prompt => 'Seleccione el estado', 
-          :selected => @contact.contact_state.state ) %>
+        <%= f.collection_select(:contact_state_id, ContactState.all, :id, :state, 
+          :selected => @contact.contact_state.id) %>
       <% else %>
         <%= f.collection_select(:contact_state_id, ContactState.all, :id, 
           :state, :prompt => 'Seleccione el estado') %>
