@@ -5,14 +5,14 @@
 
 <p>Los datos son los siguientes:<p>
 <ul>
-  <li>Nombre: <% @contract.nombre %></li>
-  <li>DNI: <% @contract.dni %></li>
-  <li>Email: <% @contract.email %></li>
-  <li>Teléfono: <% @contract.telefono %></li>
+  <li>Nombre: <%= @contract.nombre %></li>
+  <li>DNI: <%= @contract.dni %></li>
+  <li>Email: <%= @contract.email %></li>
+  <li>Teléfono: <%= @contract.telefono %></li>
 <% if @contract.interesado_en.present? %>
-  <li>Interesado en: <% @contract.interesado_en %></li>
+  <li>Interesado en: <%= @contract.interesado_en %></li>
 <% end %>
   <% if @contract.comentarios.present? %>
-  <li>Comentario: <% @contract.comentarios %></li>
+  <li>Comentario: <%= @contract.comentarios %></li>
 <% end %>
 <ul>

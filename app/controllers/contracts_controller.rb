@@ -12,7 +12,7 @@ class ContractsController < ApplicationController
   def send_contact
     
     @contract = Contract.new(params)
-    
+        
     respond_to do |format|
       if @contract.valid?
         ContractMailer.send_consultation(@contract).deliver
