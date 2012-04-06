@@ -12,8 +12,8 @@ set :scm, :git
 set :branch, 'master'
 set :deploy_via, :remote_cache
 
-role :web, '174.34.224.21/home/multisat'
-role :app, '174.34.224.21/home/multisat'
-role :db,  '174.34.224.21/home/multisat', :primary => true
+role :web, 'multisat.com.ar'
+role :app, 'multisat.com.ar'
+role :db,  'multisat.com.ar', :primary => true
 
 
