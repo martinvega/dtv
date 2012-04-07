@@ -1,4 +1,11 @@
 es:
+  helpers:
+    # Default translation keys for submit FormHelper
+    submit:
+      create: 'Guardar'
+      update: 'Actualizar'
+      submit: 'Guardar'
+      
   will_paginate:
     previous_label: "&#8592; Anterior"
     next_label: "Siguiente &#8594;"
