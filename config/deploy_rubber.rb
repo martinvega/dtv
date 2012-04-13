@@ -2,21 +2,18 @@ require 'bundler/capistrano'
 
 set :application, 'dtv'
 set :repository,  'https://github.com/martinvega/dtv.git'
-set :deploy_to, '/var/www/dtv'
+set :deploy_to, '/var/rails/dtv'
 set :user, 'ubuntu'
 set :group_writable, false
 set :shared_children, %w(system log pids private public config)
 set :use_sudo, false
-default_run_options[:pty] = true
-ssh_options[:forward_agent] = true
-ssh_options[:auth_methods] = "publickey"
-ssh_options[:keys] = [File.join(ENV["HOME"], ".ssh", "aws_ec2.pem")]
-
 
 set :scm, :git
 set :branch, 'master'
 set :deploy_via, :remote_cache
 
-role :web, '23.21.68.171'
-role :app, '23.21.68.171'
-role :db,  '23.21.68.171', :primary => true
+role :web, 'ec2-107-21-82-13.compute-1.amazonaws.com'
+role :app, 'ec2-107-21-82-13.compute-1.amazonaws.com'
+role :db,  'ec2-107-21-82-13.compute-1.amazonaws.com', :primary => true
+
+
