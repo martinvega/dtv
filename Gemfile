@@ -34,4 +34,3 @@ gem "validatable", "~> 1.6.7"
 # To use debugger
 # gem 'ruby-debug'
 
-gem "rubber", "1.15.0"
