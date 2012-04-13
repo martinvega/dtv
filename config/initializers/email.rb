@@ -8,6 +8,6 @@ Dtv::Application.config.action_mailer.smtp_settings = {
   :domain => 'multisat.com.ar',
   :port => 25,#80
   :user_name => 'marcelovillaro@multisat.com.ar',
-  :password => APP_CONFIG['smtp_password'],
+  :password => '123456',
   :authentication => :plain
 }
