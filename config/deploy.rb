@@ -7,11 +7,12 @@ set :user, 'ubuntu'
 set :group_writable, false
 set :shared_children, %w(system log pids private public config)
 set :use_sudo, false
+
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
 ssh_options[:auth_methods] = "publickey"
-ssh_options[:keys] = [File.join(ENV["HOME"], ".ssh", "last_key_ec2.pem")]
-
+ssh_options[:keys] = "#{ENV['HOME']}/.ssh/last_key_ec2.pem"
+ssh_options[:config]=false
 
 set :scm, :git
 set :branch, 'master'
