@@ -42,6 +42,9 @@ module Dtv
     # Enable the asset pipeline
     config.assets.enabled = true
 
+    # Precompilo assets
+    config.assets.precompile = %w(common.css.scss)
+    
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
   end
