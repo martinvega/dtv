@@ -43,7 +43,7 @@ module Dtv
     config.assets.enabled = true
 
     # Precompilo assets
-    config.assets.precompile = %w(common.css.scss application.css)
+    #config.assets.precompile = %w(common.css.scss application.css)
     
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
