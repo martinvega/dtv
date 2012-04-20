@@ -164,7 +164,7 @@ class ContactsController < ApplicationController
       n=0
       @parsed_file.each  do |row|
         c = Contact.new
-        c.date = row[0].to_date
+        c.date = Timeliness.parse row[0]
         c.name = conv.iconv(row[1].to_s)
         c.number = row[2].to_i
         c.locality = conv.iconv(row[3].to_s)
