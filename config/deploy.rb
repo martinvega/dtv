@@ -21,3 +21,15 @@ set :deploy_via, :remote_cache
 role :web, '23.21.68.171'
 role :app, '23.21.68.171'
 role :db,  '23.21.68.171', :primary => true
+
+namespace :deploy do
+  task :start do
+  end
+
+  task :stop do
+  end
+
+  task :restart, :roles => :app, :except => { :no_release => true } do
+    run "touch #{File.join(current_path,'tmp','restart.txt')}"
+  end
+end
