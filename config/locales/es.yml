@@ -61,4 +61,5 @@ es:
         password: 'Contraseña'
         password_confirmation: 'Confirmación contraseña'
         admin: 'Administrador'
+        category2: 'Categoría 2'
       

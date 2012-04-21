@@ -13,6 +13,11 @@
   <%= @user.admin? ? "Si" : "No" %>
 </p>
 
+<p>
+  <b><%= User.human_attribute_name 'category2' %>:</b>
+  <%= @user.category2? ? "Si" : "No" %>
+</p>
+
 
 <%= link_to 'Editar', edit_user_path(@user) %> |
 <%= link_to 'Volver', users_path %>

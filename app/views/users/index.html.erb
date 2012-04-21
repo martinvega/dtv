@@ -3,6 +3,8 @@
     <th><%= User.human_attribute_name 'name' %></th>
     <th><%= User.human_attribute_name 'user' %></th>
     <th><%= User.human_attribute_name 'admin' %></th>
+    <th><%= User.human_attribute_name 'category2' %></th>
+    <th></th>
     <th></th>
     <th></th>
     <th></th>
@@ -13,6 +15,7 @@
     <td><%= user.name %></td>
     <td><%= user.user %></td>
     <td><%= user.admin ? 'Si' : 'No' %></td>
+    <td><%= user.category2 ? 'Si' : 'No' %></td>
     <td><%= link_to 'Ver', user %></td>
     <td><%= link_to 'Editar', edit_user_path(user) %></td>
     <td class="delete"><%= button_to 'Eliminar', user, :confirm => '¿Estás seguro?',
