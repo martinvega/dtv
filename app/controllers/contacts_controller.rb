@@ -20,6 +20,13 @@ class ContactsController < ApplicationController
         :per_page => 10
         )
       end
+    
+    elsif @auth_user.category2?
+      session[:state] = params[:state_id]
+      @contacts = Contact.paginate(
+      :page => params[:page],
+      :per_page => 10
+      ).where(:contact_state_id => 10) # Estado RENOVACIÓN
       
     else
       if params[:state_id].present?

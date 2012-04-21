@@ -4,12 +4,16 @@
     <th><%= Contact.human_attribute_name 'name' %></th>
     <th><%= Contact.human_attribute_name 'number' %></th>
     <th><%= Contact.human_attribute_name 'locality' %></th>
-    <th><%= form_tag contacts_path, :method => 'get' do %>
-    <%= select_tag :state_id, 
-        options_from_collection_for_select(ContactState.all, "id", "state"), 
-      :prompt => 'TODOS LOS ESTADOS' %>
-        <%= submit_tag '->' %>
-    <% end %>
+    <th><% unless @auth_user.category2? %>
+          <%= form_tag contacts_path, :method => 'get' do %>
+          <%= select_tag :state_id, 
+            options_from_collection_for_select(ContactState.all, "id", "state"), 
+          :prompt => 'TODOS LOS ESTADOS' %>
+            <%= submit_tag '->' %>
+          <% end %>
+        <% else %>
+          <%= ContactState.human_attribute_name 'state' %>
+        <% end %>
     </th>
     <th>Usuario</th>
     <th></th>
