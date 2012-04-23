@@ -59,6 +59,15 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def admin_cat2
+    if @auth_user.admin? || @auth_user.category2?
+      true
+    else
+      flash[:alert] = 'Debe ser administrador o categoría 2'
+      redirect_to_login 
+    end
+  end
+  
   def admin
     if @auth_user.admin?
       true
@@ -67,6 +76,16 @@ class ApplicationController < ActionController::Base
       redirect_to_login 
     end
   end
+  
+  def category2
+    unless @auth_user.category2?
+      true
+    else
+      flash[:alert] = 'No tiene permisos para acceder'
+      redirect_to_login 
+    end
+  end
+  
   # Redirige la navegación a la página de autenticación, enviando el mensaje
   # indicado
   def redirect_to_login(mensaje = nil)

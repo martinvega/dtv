@@ -1,13 +1,14 @@
 class ContactsController < ApplicationController
   before_filter :auth
-  before_filter :admin, :only => [:new, :create, :import_csv, :import_csv_contacts]
+  before_filter :admin, :only => [:import_csv, :import_csv_contacts]
+  before_filter :category2, :only => :load_contacts
   
   require 'csv'
   require 'iconv'
   # GET /contacts
   # GET /contacts.json
   def index
-    if @auth_user.admin?
+    if @auth_user.admin? || @auth_user.category2?
       if params[:state_id].present?
         session[:state] = params[:state_id]
         @contacts = Contact.paginate(
@@ -20,14 +21,7 @@ class ContactsController < ApplicationController
         :per_page => 10
         )
       end
-    
-    elsif @auth_user.category2?
-      session[:state] = params[:state_id]
-      @contacts = Contact.paginate(
-      :page => params[:page],
-      :per_page => 10
-      ).where(:contact_state_id => 10) # Estado RENOVACIÓN
-      
+             
     else
       if params[:state_id].present?
         @contacts = Contact.where(:user_id => @auth_user.id, 

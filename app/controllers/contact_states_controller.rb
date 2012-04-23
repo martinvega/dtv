@@ -1,5 +1,5 @@
 class ContactStatesController < ApplicationController
-  before_filter :auth, :admin
+  before_filter :auth, :admin_cat2
   # GET /contact_states
   # GET /contact_states.json
   def index

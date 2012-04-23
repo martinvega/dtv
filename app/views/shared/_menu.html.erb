@@ -4,9 +4,9 @@
   <li><%= link_to "Contactos", contacts_path,
     :class => "real #{:selected if controller == :contacts}" %></li>
   <li><%= link_to "Campañas", campaigns_path,
-    :class => "real #{:selected if controller == :campaigns}" if @auth_user.admin? %></li>
+    :class => "real #{:selected if controller == :campaigns}" if @auth_user.admin? || @auth_user.category2? %></li>
   <li><%= link_to "Estados", contact_states_path,
-    :class => "real #{:selected if controller == :contact_states}" if @auth_user.admin? %></li>
+    :class => "real #{:selected if controller == :contact_states}" if @auth_user.admin? || @auth_user.category2? %></li>
   <li><%= link_to "Usuarios", users_path,
     :class => "real #{:selected if controller == :users}" if @auth_user.admin? %></li>
 </ul>

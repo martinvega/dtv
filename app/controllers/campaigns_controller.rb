@@ -1,5 +1,5 @@
 class CampaignsController < ApplicationController
-  before_filter :auth, :admin
+  before_filter :auth, :admin_cat2
   # GET /campaigns
   # GET /campaigns.json
   def index
