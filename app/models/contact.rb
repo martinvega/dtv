@@ -9,7 +9,8 @@ class Contact < ActiveRecord::Base
   
   # Validaciones
   validates :name, :number, :presence => true
-  validates_length_of :name, :locality, :comment, :maximum => 255
+  validates_length_of :name, :locality, :maximum => 128
+  validates_length_of :comment, :maximum => 255
   validates_numericality_of :number, :only_integer => true, :allow_nil => true,
     :allow_blank => true, :greater_than => 0, :less_than => 10000000000
   validates_uniqueness_of :number, :name, :allow_nil => true, :allow_blank => true
