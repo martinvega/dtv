@@ -1,13 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
 
-one:
+david:
   date: 2012-03-14
-  name: MyString
+  name: David Nalbandian
   number: 1
-  locality: MyString
+  locality: Luzuriaga
+  comment: Comentario
 
-two:
+pablo:
   date: 2012-03-14
-  name: MyString
-  number: 1
-  locality: MyString
+  name: Pablo Aimar
+  number: 2
+  locality: Villa nueva
+  
