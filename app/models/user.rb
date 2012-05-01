@@ -11,9 +11,10 @@ class User < ActiveRecord::Base
   validates :name, :user, :presence => true
   validates_uniqueness_of :name, :user, :case_sensitive => false, 
     :allow_nil => true, :allow_blank => true
-  validates_length_of :name, :user, :maximum => 255, :allow_nil => true,
+  validates_length_of :name, :user, :in => 5..30, :allow_nil => true,
     :allow_blank => true
-  validates_length_of :password, :in => 5..128
+  validates_length_of :password, :in => 5..128, :allow_nil => true,
+    :allow_blank => true
   validates_confirmation_of :password, :if => :is_not_encrypted?
   
   # Método invocado después de haber creado una instancia de la clase
