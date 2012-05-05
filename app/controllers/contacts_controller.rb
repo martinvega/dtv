@@ -102,7 +102,9 @@ class ContactsController < ApplicationController
   # PUT /contacts/1.json
   def update
     @contact = Contact.find(params[:id])
-    @contact.user = @auth_user
+    unless @auth_user.admin?
+      @contact.user = @auth_user
+    end
        
     respond_to do |format|
       if @contact.update_attributes(params[:contact])
