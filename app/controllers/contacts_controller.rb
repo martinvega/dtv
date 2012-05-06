@@ -127,6 +127,7 @@ class ContactsController < ApplicationController
         :start => date.beginning_of_month,
         :end => date.end_of_month).first!
       @contact = Contact.find(contact.id)
+      @contact.update_attribute :user_id, @auth_user.id
     end
       
   rescue ActiveRecord::RecordNotFound
