@@ -123,11 +123,11 @@ class ContactsController < ApplicationController
       @selected_year = params[:campaign_year].to_i
       @selected_month = params[:campaign_month].to_i
       date = DateTime.new(@selected_year, @selected_month)
-      contact = Contact.where('contact_state_id IS NULL AND date BETWEEN :start AND :end',
+      contact = Contact.where('user_id IS NULL AND contact_state_id IS NULL AND date BETWEEN :start AND :end',
         :start => date.beginning_of_month,
         :end => date.end_of_month).first!
       @contact = Contact.find(contact.id)
-      @contact.update_attribute :user_id, @auth_user.id
+      @contact.update_attribute :user, @auth_user
     end
       
   rescue ActiveRecord::RecordNotFound
@@ -138,7 +138,6 @@ class ContactsController < ApplicationController
   
   def update_state
     @contact = Contact.find(params[:id])
-    @contact.user = @auth_user
     month = params[:month]
     year = params[:year]
     
