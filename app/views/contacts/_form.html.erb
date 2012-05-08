@@ -31,7 +31,7 @@
     <div id ="state_select">
       <% if @contact.contact_state.present? %>
         <%= f.collection_select(:contact_state_id, ContactState.all, :id, :state, 
-          :selected => @contact.contact_state.id) %>
+           {:selected => @contact.contact_state.id, :include_blank => 'Sin estado'}) %>
       <% else %>
         <%= f.collection_select(:contact_state_id, ContactState.all, :id, 
           :state, :prompt => 'Seleccione el estado') %>

@@ -42,7 +42,6 @@ class ContactsController < ApplicationController
       format.html # index.html.erb
       format.json { render :json => @contacts }
       format.pdf  {
-        puts "SESION #{session[:state]}"
         if session[:state].present?
           contacts = Contact.where(:contact_state_id => session[:state])
         else
@@ -103,7 +102,9 @@ class ContactsController < ApplicationController
   # PUT /contacts/1.json
   def update
     @contact = Contact.find(params[:id])
-    @contact.user = @auth_user
+    unless @auth_user.admin?
+      @contact.user = @auth_user
+    end
        
     respond_to do |format|
       if @contact.update_attributes(params[:contact])
@@ -119,15 +120,14 @@ class ContactsController < ApplicationController
   def load_contacts
     
     unless params[:campaign_month].nil? || params[:campaign_year].nil?
-      puts "MES: #{params[:campaign_month]} - ANIO: #{params[:campaign_year]}"
       @selected_year = params[:campaign_year].to_i
       @selected_month = params[:campaign_month].to_i
       date = DateTime.new(@selected_year, @selected_month)
-      puts "DATE: #{date}"
       contact = Contact.where('contact_state_id IS NULL AND date BETWEEN :start AND :end',
         :start => date.beginning_of_month,
         :end => date.end_of_month).first!
       @contact = Contact.find(contact.id)
+      @contact.update_attribute :user_id, @auth_user.id
     end
       
   rescue ActiveRecord::RecordNotFound
@@ -139,6 +139,8 @@ class ContactsController < ApplicationController
   def update_state
     @contact = Contact.find(params[:id])
     @contact.user = @auth_user
+    month = params[:month]
+    year = params[:year]
     
     respond_to do |format|
       if @contact.update_attributes(params[:contact])
@@ -146,7 +148,9 @@ class ContactsController < ApplicationController
         format.html { 
           flash[:notice] = 'El estado ha sido guardado satisfactoriamente, 
           presione Buscar Contacto para continuar con la carga'
-          render :action => :load_contacts }
+          redirect_to load_contacts_contacts_path(:campaign_month => month,
+          :campaign_year => year)
+        }
         format.json { head :ok }
       else
         format.html { render :action => 'load_contacts' }

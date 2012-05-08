@@ -1,11 +1,14 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
 
-one:
-  name: MyString
-  user: MyString
-  password: MyString
+admin:
+  name: Administrador
+  user: admin
+  password: <%= Digest::SHA512.hexdigest("#{Digest::SHA512.hexdigest(self.object_id.to_s + rand.to_s)}-admin") %>
+  admin: true
 
-two:
-  name: MyString
-  user: MyString
-  password: MyString
+noadmin:
+  name: No administrador
+  user: noadmin
+  password: <%= Digest::SHA512.hexdigest("#{Digest::SHA512.hexdigest(self.object_id.to_s + rand.to_s)}-noadmin") %>
+  admin: false
+  

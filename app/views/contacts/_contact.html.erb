@@ -1,6 +1,7 @@
 <div id="load_contact">
 <%= form_for @contact, :url => {:controller => :contacts, 
-  :action => :update_state, :id => @contact.id} do |f| %>
+  :action => :update_state, :id => @contact.id, :month => @contact.date.month,
+:year => @contact.date.year} do |f| %>
   <% if @contact.errors.any? %>
     <div id="error_explanation">
       <h2>El Contacto no se pudo guardar por los siguientes errores:</h2>
