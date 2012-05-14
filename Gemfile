@@ -11,7 +11,7 @@ gem 'json'
 gem 'validates_timeliness'
 gem "dynamic_form", "~> 1.1.4"
 gem "jquery_datepicker", "~> 0.3.2"
-gem "prawn", "~> 0.12.0"
+gem "prawn", '0.8.4'
 gem "capistrano", "~> 2.11.2"
 gem "newrelic_rpm"
 
