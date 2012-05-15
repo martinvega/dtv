@@ -123,7 +123,14 @@ class ContactsController < ApplicationController
   end
   
   def load_contacts
-    
+    @months = []
+    @years = []
+    MONTHS.each_with_index do |month, i| 
+      @months << [month, i+1] 
+    end 
+    YEARS.each do |year| 
+      @years << year 
+    end 
     unless params[:campaign_month].nil? || params[:campaign_year].nil?
       @selected_year = params[:campaign_year].to_i
       @selected_month = params[:campaign_month].to_i
