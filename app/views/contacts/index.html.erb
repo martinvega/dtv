@@ -1,6 +1,15 @@
 <table>
   <tr>
-    <th><%= Contact.human_attribute_name 'date' %></th>
+    <th><% if @auth_user.admin? %>  
+          <%= form_tag contacts_path, :method => 'get' do %>
+            <%= select_tag :month_id, options_for_select(@months), :prompt => 'Mes' %>
+            <%= select_tag :year_id, options_for_select(@years), :prompt => 'Año' %>
+            <%= submit_tag '->' %>
+          <% end %>
+        <% else %>
+          <%= Contact.human_attribute_name 'date' %>
+        <% end %>
+    </th>
     <th><%= Contact.human_attribute_name 'name' %></th>
     <th><%= Contact.human_attribute_name 'number' %></th>
     <th><%= Contact.human_attribute_name 'locality' %></th>
@@ -8,7 +17,7 @@
           <%= form_tag contacts_path, :method => 'get' do %>
           <%= select_tag :state_id, 
             options_from_collection_for_select(ContactState.all, "id", "state"), 
-          :prompt => 'TODOS LOS ESTADOS' %>
+          :prompt => 'Estados' %>
             <%= submit_tag '->' %>
           <% end %>
         <% else %>
@@ -19,7 +28,7 @@
             <%= form_tag contacts_path, :method => 'get' do %>
               <%= select_tag :user_id, 
               options_from_collection_for_select(User.all, "id", "user"), 
-              :prompt => 'TODOS LOS USUARIOS' %>
+              :prompt => 'Usuarios' %>
               <%= submit_tag '->' %>
             <% end %>
           <% else %>

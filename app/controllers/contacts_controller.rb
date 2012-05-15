@@ -8,18 +8,38 @@ class ContactsController < ApplicationController
   # GET /contacts
   # GET /contacts.json
   def index
+    @months = []
+    @years = []
+    MONTHS.each_with_index do |month, i| 
+      @months << [i+1] 
+    end 
+    YEARS.each do |year| 
+      @years << year 
+    end 
     if @auth_user.admin? || @auth_user.category2?
+      # Filtro por Estado
       if params[:state_id].present?
         session[:state] = params[:state_id]
         @contacts = Contact.paginate(
         :page => params[:page],
         :per_page => 10
       ).where(:contact_state_id => params[:state_id])
+      # Filtro por Usuario
       elsif params[:user_id].present?
         @contacts = Contact.paginate(
         :page => params[:page],
         :per_page => 10
       ).where(:user_id => params[:user_id])
+      # Filtro por fecha
+      elsif params[:month_id].present? && params[:year_id].present?
+        date = DateTime.new(params[:year_id].to_i, params[:month_id].to_i)
+        @contacts = Contact.paginate(
+          :page => params[:page],
+          :per_page => 10
+        ).where('date BETWEEN :start AND :end',
+          :start => date.beginning_of_month,
+          :end => date.end_of_month)
+      # Todos los Contactos
       else
         @contacts = Contact.paginate(
         :page => params[:page],
