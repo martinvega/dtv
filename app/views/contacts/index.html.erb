@@ -7,7 +7,7 @@
             <%= submit_tag '->' %>
           <% end %>
         <% else %>
-          <%= Contact.human_attribute_name 'date' %>
+          <%= Contact.human_attribute_name 'modification_date' %>
         <% end %>
     </th>
     <th><%= Contact.human_attribute_name 'name' %></th>
@@ -42,7 +42,7 @@
 
 <% @contacts.each do |contact| %>
   <tr class="<%= cycle(:even, :odd) %>">
-    <td><%= contact.date %></td>
+    <td><%= contact.modification_date %></td>
     <td><%= contact.name %></td>
     <td><%= contact.number %></td>
     <td><%= contact.locality %></td>

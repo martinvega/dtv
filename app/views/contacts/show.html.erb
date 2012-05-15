@@ -3,6 +3,13 @@
   <%= @contact.date %>
 </p>
 
+<% if @contact.modification_date.present? %>
+<p>
+  <b><%= Contact.human_attribute_name 'modification_date' %>:</b>
+  <%= @contact.modification_date %>
+</p>
+<% end %>
+
 <p>
   <b><%= Contact.human_attribute_name 'name' %>:</b>
   <%= @contact.name %>

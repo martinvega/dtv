@@ -36,7 +36,7 @@ class ContactsController < ApplicationController
         @contacts = Contact.paginate(
           :page => params[:page],
           :per_page => 10
-        ).where('date BETWEEN :start AND :end',
+        ).where('modification_date BETWEEN :start AND :end',
           :start => date.beginning_of_month,
           :end => date.end_of_month)
       # Todos los Contactos
@@ -172,6 +172,7 @@ class ContactsController < ApplicationController
     @contact = Contact.find(params[:id])
     month = params[:month]
     year = params[:year]
+    @contact.modification_date = Date.today
     
     respond_to do |format|
       if @contact.update_attributes(params[:contact])

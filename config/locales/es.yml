@@ -49,6 +49,7 @@ es:
         date: 'Fecha'
       contact:
         date: 'Fecha'
+        modification_date: 'Fecha de modificación'
         name: 'Nombre'
         number: 'Número'
         locality: 'Localidad'
