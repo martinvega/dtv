@@ -15,6 +15,11 @@ class ContactsController < ApplicationController
         :page => params[:page],
         :per_page => 10
       ).where(:contact_state_id => params[:state_id])
+      elsif params[:user_id].present?
+        @contacts = Contact.paginate(
+        :page => params[:page],
+        :per_page => 10
+      ).where(:user_id => params[:user_id])
       else
         @contacts = Contact.paginate(
         :page => params[:page],

@@ -15,7 +15,17 @@
           <%= ContactState.human_attribute_name 'state' %>
         <% end %>
     </th>
-    <th>Usuario</th>
+    <th><% if @auth_user.admin? %>  
+            <%= form_tag contacts_path, :method => 'get' do %>
+              <%= select_tag :user_id, 
+              options_from_collection_for_select(User.all, "id", "user"), 
+              :prompt => 'TODOS LOS USUARIOS' %>
+              <%= submit_tag '->' %>
+            <% end %>
+          <% else %>
+            <%= User.human_attribute_name 'user' %>
+          <% end %>
+    </th>
     <th></th>
     <th></th>
     <th></th>
