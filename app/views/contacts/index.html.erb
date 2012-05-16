@@ -59,14 +59,14 @@
 <div id="links">
   <%= will_paginate @contacts %>
   <%= link_to 'Nuevo Contacto', new_contact_path, :class => :important_action %> 
-<% if @auth_user.admin? %>  
+  <% unless @auth_user.category2? %>
+   | <%= link_to 'Cargar Estados', load_contacts_contacts_path,
+      :class => :important_action %>  
+  <% end %>  
+  <% if @auth_user.admin? %>  
   | <%= link_to 'Importar Contactos CSV', import_csv_contacts_path, 
-    :class => :important_action %><br />
-  <%= link_to 'Exportar a PDF', contacts_path(:state_id => session[:state],:format => :pdf),
-    :class => :important_action %><br />
-<% end %>
-<% unless @auth_user.category2? %>
-  <%= link_to 'Cargar Estados', load_contacts_contacts_path,
-    :class => :important_action %>  
-<% end %>
+      :class => :important_action %>
+  | <%= link_to 'Exportar a PDF', contacts_path(:state_id => session[:state],:format => :pdf),
+      :class => :important_action %><br />
+  <% end %>
 </div>
