@@ -35,7 +35,7 @@ class Contact < ActiveRecord::Base
     data = []
     state = ''
     comment = ''
-    data[0] = ['Fecha', 'Nombre', 'Número', 'Estado', 'Comentario' ]
+    data[0] = ['Fecha', 'Modificación', 'Nombre', 'Número', 'Estado', 'Comentario' ]
     
     contacts.each_with_index do |contact, i|
       if contact.contact_state.nil?
@@ -44,14 +44,20 @@ class Contact < ActiveRecord::Base
         state = contact.contact_state.state        
       end
       
+      if contact.modification_date.nil?
+        modification = '---'
+      else
+        modification = contact.modification_date
+      end
+      
       if contact.comment.present?
         comment = contact.comment
       else
         comment = '---'
       end
       
-      data[i+1] = [contact.date, contact.name, contact.number, 
-          state, comment]
+      data[i+1] = [contact.date, modification, contact.name, 
+        contact.number, state, comment]
     end
 
     pdf.font_size((PDF_FONT_SIZE * 0.5).round) do
