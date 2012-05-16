@@ -81,4 +81,20 @@ class ContactTest < ActiveSupport::TestCase
     assert_equal [error_message_from_model(@contact, :comment, :too_long,
       :count => 255)], @contact.errors[:comment]
   end
+  
+  test 'conversion to pdf' do
+    FileUtils.rm Contact.pdf_full_path if File.exists?(Contact.pdf_full_path)
+
+    assert !File.exists?(Contact.pdf_full_path)
+
+    assert_nothing_raised(Exception) do
+      contacts << @contact
+      Contact.to_pdf contacts
+    end
+
+    assert File.exists?(Contact.pdf_full_path)
+
+    FileUtils.rm Contact.pdf_full_path
+  end
+  
 end
