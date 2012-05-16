@@ -75,7 +75,7 @@ class Contact < ActiveRecord::Base
   end
   
   def self.pdf_relative_path
-    File.join(*(['pdfs'] + ('%08d' % 1010).scan(/..../) + [Contact.pdf_name]))
+    File.join(*(['pdfs'] + [Contact.pdf_name]))
   end
 
   def self.pdf_full_path
