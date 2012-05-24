@@ -3,10 +3,8 @@
     <div id="dtv_logo">
       <%= image_tag 'directvLogo.jpg', :size => '230x180', :alt => 'Directv logo' %>
     </div>
-    <div id="contract_now">
-      <%= link_to 'Contrátalo ahora', new_contract_path, :id => :contract_now %>
-    </div>
-    <div id="phone">
+    <%= link_to 'Contrátalo ahora', new_contract_path, :id => :contract_now %>
+   <div id="phone">
       <%= image_tag 'consultas.png', :size => '200x30', :alt => 'Consultas al 4225341' %>
     </div>
   </div>
@@ -19,16 +17,16 @@
     <%= form_for @user, :url => create_session_users_path do |f| %>
 
       <div class="field">
-        <%= f.label 'INTRANET' %>
+        Intranet
         <%= image_tag 'MultiSAT.JPG', :size => "150x35",
     :alt => "Bienvenido a Multisat Digital" %>
       </div>
       <div class="field">
-        <%= f.label 'Usuario' %><br />
+        <%= f.label :user %><br />
         <%= f.text_field :user, :maxlength => 18, :autofocus => true %>
       </div>
       <div class="field">
-        <%= f.label 'Contraseña' %><br />
+        <%= f.label :password %><br />
         <%= f.password_field :password, :maxlength => 18 %>
       </div>
 
