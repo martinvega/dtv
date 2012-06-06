@@ -206,13 +206,14 @@ class ContactsController < ApplicationController
         c.number = row[2].to_i
         c.locality = conv.iconv(row[3].to_s)
         if row[4]
+          c.payment_form = conv.iconv(row[4].to_s)
+        end
+        if row[5]
           state = ContactState.find_by_state(conv.iconv(row[4].to_s.upcase))
           if state
             c.contact_state = state
           end
         end
-        puts "DATE = #{c.date} / c.name #{c.name} / c.number = #{c.number} /
-        c.locality = #{c.locality} / c.state = #{c.contact_state}"
         if c.save
           n+=1
         end
