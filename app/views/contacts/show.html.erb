@@ -25,6 +25,13 @@
   <%= @contact.locality %>
 </p>
 
+<% if @contact.payment_form.present? %>
+<p>
+  <b><%= ContactState.human_attribute_name 'payment_form' %>:</b>
+  <%= @contact.payment_form %>
+</p>
+<% end %>
+
 <% if @contact.contact_state.present? %>
 <p>
   <b><%= ContactState.human_attribute_name 'state' %>:</b>

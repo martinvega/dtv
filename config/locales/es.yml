@@ -52,8 +52,9 @@ es:
         modification_date: 'Fecha de modificación'
         name: 'Nombre'
         number: 'Número'
-        locality: 'Localidad'
+        locality: 'Localidad/Dirección'
         comment: 'Comentario'
+        payment_form: 'Forma de pago'
       contact_state:
         state: 'Estado'
       user:

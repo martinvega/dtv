@@ -27,6 +27,10 @@
     <%= f.text_field :locality %>
   </div>
   <div class="field">
+    <%= f.label :payment_form %><br />
+    <%= f.text_field :payment_form %>
+  </div>
+  <div class="field">
     <%= f.label :contact_state %><br />
     <div id ="state_select">
       <% if @contact.contact_state.present? %>
