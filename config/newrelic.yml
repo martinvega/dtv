@@ -3,9 +3,9 @@
 # Ruby, Java, .NET, PHP, and Python applications with deep visibility and low overhead.
 # For more information, visit www.newrelic.com.
 #
-# Generated September 13, 2011
+# Generated June 21, 2012
 #
-# This configuration file is custom generated for print_hub
+# This configuration file is custom generated for DTV
 
 # Here are the settings that are common to all environments:
 common: &default_settings
@@ -14,8 +14,8 @@ common: &default_settings
   # You must specify the license key associated with your New Relic
   # account.  This key binds your Agent's data to your account in the
   # New Relic service.
-  license_key: 'd08db51357cf3e59970e338b3a6936cef68e4ed6'
-   
+  license_key: 'f627006ab45b718042e05d11d0ea6e385dce49a7'
+  
   # Agent Enabled (Ruby/Rails Only)
   # Use this setting to force the agent to run or not run.
   # Default is 'auto' which means the agent will install and run only
@@ -33,7 +33,7 @@ common: &default_settings
   # "All UI" then specify a semicolon-separated list of up to three
   # distinct names.  If you comment this out, it defaults to the 
   # capitalized RAILS_ENV (i.e., Production, Staging, etc)
-  app_name: DTV
+  app_name: My Application
 
   # When "true", the agent collects performance data about your 
   # application and reports this data to the New Relic service at
@@ -78,7 +78,7 @@ common: &default_settings
   # as Tolerating transactions; and more than four times the apdex_t
   # value as Frustrating transactions. 
   # For more about the Apdex standard, see
-  # http://support.newrelic.com/faqs/general/apdex
+  # http://newrelic.com/docs/general/apdex
   apdex_t: 0.5
 
   # Proxy settings for connecting to the New Relic server.
@@ -175,10 +175,6 @@ common: &default_settings
   # Certain types of instrumentation such as GC stats will not work if 
   # you are running multi-threaded.  Please let us know.
   # multi_threaded = false
-  
-  # Enable real user monitoring (RUM)
-  # browser_monitoring:
-  #  auto_instrument: true
 
 # Application Environments
 # ------------------------------------------
@@ -228,5 +224,4 @@ production:
 staging:
   <<: *default_settings
   monitor_mode: true
-  app_name: DTV (Staging)## YAML Template.
----
+  app_name: My Application (Staging)
