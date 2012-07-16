@@ -93,7 +93,7 @@ class Contact < ActiveRecord::Base
   end
 
   def self.pdf_name
-    'bolsaContactosMultisat.pdf'
+    "bolsaContactosMultisat-#{Date.today.to_s}.pdf"
   end
 
   def self.pdf_relative_path
