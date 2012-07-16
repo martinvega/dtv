@@ -87,7 +87,7 @@ class Contact < ActiveRecord::Base
       pdf.draw_text "#{i+1} / #{pdf.page_count}", :at=>[1,1], :size => (PDF_FONT_SIZE * 0.75).round
     end
 
-    #FileUtils.mkdir_p File.dirname(Contact.pdf_full_path)
+    FileUtils.mkdir_p File.dirname(Contact.pdf_full_path)
     pdf.render_file Contact.pdf_full_path
 
   end
