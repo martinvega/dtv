@@ -1,8 +1,9 @@
+# -*- coding: utf-8 -*-
 class ContactsController < ApplicationController
   before_filter :auth
   before_filter :admin, :only => [:import_csv, :import_csv_contacts]
   before_filter :category2, :only => :load_contacts
-  
+
   require 'csv'
   require 'iconv'
   # GET /contacts
@@ -10,12 +11,12 @@ class ContactsController < ApplicationController
   def index
     @months = []
     @years = []
-    MONTHS.each_with_index do |month, i| 
-      @months << [i+1] 
-    end 
-    YEARS.each do |year| 
-      @years << year 
-    end 
+    MONTHS.each_with_index do |month, i|
+      @months << [i+1]
+    end
+    YEARS.each do |year|
+      @years << year
+    end
     if @auth_user.admin? || @auth_user.category2?
       # Filtro por Estado
       if params[:state_id].present?
@@ -46,23 +47,23 @@ class ContactsController < ApplicationController
         :per_page => 10
         )
       end
-             
+
     else
       if params[:state_id].present?
-        @contacts = Contact.where(:user_id => @auth_user.id, 
+        @contacts = Contact.where(:user_id => @auth_user.id,
           :contact_state_id => params[:state_id]).paginate(
             :page => params[:page],
             :per_page => 10
-            )        
+            )
       else
         @contacts = Contact.where(:user_id => @auth_user.id).paginate(
         :page => params[:page],
         :per_page => 10
-        )        
+        )
       end
-      
+
     end
-    
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @contacts }
@@ -111,7 +112,7 @@ class ContactsController < ApplicationController
   def create
     @contact = Contact.new(params[:contact])
     @contact.user = @auth_user
-       
+
     respond_to do |format|
       if @contact.save
         format.html { redirect_to @contact, :notice => 'El contacto ha sido creado satisfactoriamente' }
@@ -130,7 +131,7 @@ class ContactsController < ApplicationController
     unless @auth_user.admin?
       @contact.user = @auth_user
     end
-       
+
     respond_to do |format|
       if @contact.update_attributes(params[:contact])
         format.html { redirect_to @contact, :notice => 'El contacto ha sido actualizado satisfactoriamente' }
@@ -141,44 +142,42 @@ class ContactsController < ApplicationController
       end
     end
   end
-  
+
   def load_contacts
     @months = []
     @years = []
-    MONTHS.each_with_index do |month, i| 
-      @months << [month, i+1] 
-    end 
-    YEARS.each do |year| 
-      @years << year 
-    end 
+    MONTHS.each_with_index do |month, i|
+      @months << [month, i+1]
+    end
+    YEARS.each do |year|
+      @years << year
+    end
     unless params[:campaign_month].nil? || params[:campaign_year].nil?
       @selected_year = params[:campaign_year].to_i
       @selected_month = params[:campaign_month].to_i
       date = DateTime.new(@selected_year, @selected_month)
-      contact = Contact.where('user_id IS NULL AND contact_state_id IS NULL AND date BETWEEN :start AND :end',
-        :start => date.beginning_of_month,
-        :end => date.end_of_month).first!
+      contact = Contact.between_dates(date).first!
       @contact = Contact.find(contact.id)
       @contact.update_attribute :user, @auth_user
     end
-      
+
   rescue ActiveRecord::RecordNotFound
       flash[:alert] = 'No quedan mas contactos sin estado para la campaña seleccionada'
-      redirect_to contacts_path  
-    
+      redirect_to contacts_path
+
   end
-  
+
   def update_state
     @contact = Contact.find(params[:id])
     month = params[:month]
     year = params[:year]
     @contact.modification_date = Date.today
-    
+
     respond_to do |format|
       if @contact.update_attributes(params[:contact])
-        
-        format.html { 
-          flash[:notice] = 'El estado ha sido guardado satisfactoriamente, 
+
+        format.html {
+          flash[:notice] = 'El estado ha sido guardado satisfactoriamente,
           presione Buscar Contacto para continuar con la carga'
           redirect_to load_contacts_contacts_path(:campaign_month => month,
           :campaign_year => year)
@@ -190,10 +189,10 @@ class ContactsController < ApplicationController
       end
     end
   end
-  
+
   def import_csv
   end
-  
+
   def import_csv_contacts
     if params[:dump_contacts] && File.extname(params[:dump_contacts][:file].original_filename).downcase == '.csv'
       @parsed_file=CSV::Reader.parse(params[:dump_contacts][:file], delimiter = ',')
@@ -225,7 +224,7 @@ class ContactsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(contacts_path) }
     end
-  end  
+  end
 
   # DELETE /contacts/1
   # DELETE /contacts/1.json
