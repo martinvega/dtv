@@ -1,5 +1,17 @@
 # -*- coding: utf-8 -*-
 class Contact < ActiveRecord::Base
+  # Scopes
+  scope :between_dates, lambda {|date|
+    where('user_id IS NULL AND contact_state_id IS NULL AND date BETWEEN :start AND :end',
+      :start => date.beginning_of_month,
+      :end => date.end_of_month
+    )
+  }
+
+  scope :by_state, lambda { |state|
+    where(:contact_state_id => state)
+  }
+
   default_scope :order => 'date'
 
   # Relaciones
@@ -19,14 +31,6 @@ class Contact < ActiveRecord::Base
     :allow_blank => true, :greater_than => 0, :less_than => 10000000000
   validates_uniqueness_of :number, :name, :allow_nil => true, :allow_blank => true
   validates_date :date, :allow_nil => true, :allow_blank => true
-
-  # Scopes
-  scope :between_dates, lambda {|date|
-    where('user_id IS NULL AND contact_state_id IS NULL AND date BETWEEN :start AND :end',
-      :start => date.beginning_of_month,
-      :end => date.end_of_month
-    )
-  }
 
   def self.to_pdf(contacts)
     pdf = Prawn::Document.new(PDF_OPTIONS)

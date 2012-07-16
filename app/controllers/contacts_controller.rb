@@ -69,7 +69,7 @@ class ContactsController < ApplicationController
       format.json { render :json => @contacts }
       format.pdf  {
         if session[:state].present?
-          contacts = Contact.where(:contact_state_id => session[:state])
+          contacts = Contact.by_state(session[:state])
         else
           contacts = Contact.all
         end
