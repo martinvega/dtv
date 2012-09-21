@@ -3,9 +3,9 @@
 # Ruby, Java, .NET, PHP, and Python applications with deep visibility and low overhead.
 # For more information, visit www.newrelic.com.
 #
-# Generated June 21, 2012
+# Generated September 21, 2012
 #
-# This configuration file is custom generated for DTV
+# This configuration file is custom generated for Lemn
 
 # Here are the settings that are common to all environments:
 common: &default_settings
@@ -14,7 +14,7 @@ common: &default_settings
   # You must specify the license key associated with your New Relic
   # account.  This key binds your Agent's data to your account in the
   # New Relic service.
-  license_key: 'f627006ab45b718042e05d11d0ea6e385dce49a7'
+  license_key: '80d32f0ecc051ce6d5edc335e331b70cbc43b763'
   
   # Agent Enabled (Ruby/Rails Only)
   # Use this setting to force the agent to run or not run.
